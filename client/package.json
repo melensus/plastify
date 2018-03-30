@@ -4,12 +4,14 @@
   "private": true,
   "proxy": "http://localhost:5000/",
   "dependencies": {
+    "bootstrap": "^4.0.0",
     "husky": "^0.14.3",
     "lint-staged": "^6.1.1",
     "prettier": "^1.10.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
+    "reactstrap": "^5.0.0-beta.3",
     "redux": "^3.7.2",
     "redux-promise": "^0.5.3"
   },
