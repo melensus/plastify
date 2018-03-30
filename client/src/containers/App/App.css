@@ -1,5 +1,35 @@
 .App {
   text-align: center;
+  background-color: black;
+  position: relative;
+  height: 100%;
+}
+
+.App .Body {
+  color: white;
+  position: relative;
+  height: calc(100% - 72px);
+  padding: 42px;
+}
+
+.App .Header {
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 36px;
+  background-color: #333;
+  padding-top: 6px;
+}
+
+.App .Footer {
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 36px;
+  background-color: #333;
+  padding-top: 6px;
 }
 
 .App-logo {
@@ -23,6 +53,10 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
