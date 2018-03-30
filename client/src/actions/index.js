@@ -1,7 +1,7 @@
 import { registerActions, actions } from '../actionHelpers';
 
-import versionInfo from './versionInfo';
+import VersionInfo from './VersionInfo';
 
-registerActions(versionInfo);
+registerActions(VersionInfo);
 
 export const Action = actions;
