@@ -12,7 +12,7 @@ class VersionInfo extends React.Component {
 
   render() {
     const { dispatch, versionInfo } = this.props;
-    console.log('render', versionInfo);
+
     return (
       <div>
         VersionInfo : {versionInfo} <Button color="danger">Danger!</Button>
@@ -26,7 +26,6 @@ VersionInfo.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('mapProps', state);
   return {
     versionInfo: state.versionInfo
   };

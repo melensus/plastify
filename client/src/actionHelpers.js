@@ -12,12 +12,9 @@ export function registerActions() {
   for (const action of arguments) {
     registerAction(action);
   }
-  console.log('actions', actions);
-  console.log('reducers', reducers);
 }
 
 function registerAction(action) {
-  console.log('action', action);
   const actionInfo = {
     type: action.type,
     create: (status, args) => {
@@ -31,7 +28,6 @@ function registerAction(action) {
       return fetch(action.url)
         .then(response => response.json())
         .then(json => {
-          console.log('json', json);
           return json;
         })
         .then(json => dispatch(actionInfo.create(SUCCESS, { response: json })))
@@ -54,11 +50,9 @@ function registerAction(action) {
 }
 
 function reduce(type, state, action, handlers) {
-  console.log(action);
   if (type === action.type && action.status) {
     const handler = handlers[action.status.toLowerCase()];
     if (handler) {
-      console.log('handled', action);
       return handler(action, state);
     }
   }
