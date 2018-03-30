@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { reducers } from '../actionHelpers';
 
 export default function configureStore() {

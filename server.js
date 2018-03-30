@@ -40,7 +40,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 app.use(express.static("server/static"));
-app.use(session({ secret: "catsfoodz" }));
+app.use(session({ secret: "catsfoodz", resave: false, saveUninitialized : false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());

@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 export const reducers = [];
 
 const PENDING = 'PENDING';
