@@ -1,19 +1,10 @@
 import React from 'react';
 import Tile from './Tile/Tile';
+import Navigation from '../containers/Navigation/Navigation';
 
 const Body = () => (
-  <div class="Body">
-    <Tile />
-    <Tile />
-    <Tile />
-    <Tile />
-    <Tile />
-    <Tile />
-    <Tile />
-    <Tile />
-    <Tile />
-    <Tile />
-    <Tile />
+  <div className="Body">
+    <Navigation />
   </div>
 );
 

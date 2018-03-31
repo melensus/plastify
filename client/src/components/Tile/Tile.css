@@ -3,12 +3,15 @@
   width: 128px;
   height: 128px;
   display: inline-block;
-  border: 1px solid #111;
   border-radius: 128px;
   margin: 16px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 64px 0 #111 inset, 0 0 64px 0 #111;
 }
 
 .Tile:hover {
   background-color: #666;
-  border: 1px solid #333;
+
+  box-shadow: 0 0 3px 0 black inset, 0 0 3px 0 black;
 }

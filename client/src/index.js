@@ -6,6 +6,9 @@ import './index.css';
 import configureStore from './store/configureStore';
 import App from './containers/App/App';
 import registerServiceWorker from './registerServiceWorker';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const store = configureStore();
 

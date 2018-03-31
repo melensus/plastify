@@ -6,52 +6,77 @@ const ERROR = 'ERROR';
 
 export const actions = {};
 
-export function registerActions() {
-  for (const action of arguments) {
-    registerAction(action);
-  }
+export function registerActions(actions) {
+  actions.map(registerAction);
 }
 
-function registerAction(action) {
-  const actionInfo = {
-    type: action.type,
+function registerAction(actionConfig) {
+  actions[actionConfig.type] = {
+    type: actionConfig.type,
     create: (status, args) => {
-      return Object.assign({ type: action.type, status }, args);
+      return { type: actionConfig.type, status, ...args };
     }
   };
 
-  if (action.url) {
+  addURLFetch(actionConfig);
+  addFuncFetch(actionConfig);
+  addReducers(actionConfig);
+}
+
+function addFuncFetch(actionConfig) {
+  if (actionConfig.fetch) {
+    const actionInfo = actions[actionConfig.type];
     actionInfo.fetch = dispatch => {
       dispatch(actionInfo.create(PENDING));
-      return fetch(action.url)
+      return actionConfig
+        .fetch(actionInfo, dispatch)
+        .then(response =>
+          dispatch(actionInfo.create(SUCCESS, { response: response }))
+        )
+        .catch(e => dispatch(actionInfo.create(ERROR, { error: e })));
+    };
+  }
+}
+
+function addURLFetch(actionConfig) {
+  if (actionConfig.url) {
+    const actionInfo = actions[actionConfig.type];
+    actionInfo.fetch = dispatch => {
+      dispatch(actionInfo.create(PENDING));
+      return fetch(actionConfig.url)
         .then(response => response.json())
-        .then(json => {
-          return json;
-        })
         .then(json => dispatch(actionInfo.create(SUCCESS, { response: json })))
         .catch(e => dispatch(actionInfo.create(ERROR, { error: e })));
     };
   }
-
-  if (action.state) {
-    actionInfo.reducer = {};
-    for (const key in action.state) {
-      const reducerInfo = action.state[key];
-      actionInfo.reducer[key] = (state = reducerInfo.default, action) => {
-        return reduce(action.type, state, action, reducerInfo);
-      };
-    }
-    reducers.push(actionInfo.reducer);
-  }
-
-  actions[action.type] = actionInfo;
 }
 
-function reduce(type, state, action, handlers) {
-  if (type === action.type && action.status) {
-    const handler = handlers[action.status.toLowerCase()];
+function addReducers(actionConfig) {
+  if (actionConfig.state) {
+    const actionInfo = actions[actionConfig.type];
+    actionInfo.reducers = {};
+    for (const key in actionConfig.state) {
+      const handlers = actionConfig.state[key];
+      addReducer(actionInfo, handlers, key, actionConfig);
+    }
+    reducers.push(actionInfo.reducers);
+  }
+}
+
+function addReducer(actionInfo, handlers, key, actionConfig) {
+  actionInfo.reducers[key] = (state = handlers.default, action) => {
+    return reduce(actionInfo, key, action, state, actionConfig);
+  };
+}
+
+function reduce(actionInfo, key, action, state, actionConfig) {
+  if (actionInfo.type === action.type && action.status) {
+    const handler = actionConfig.state[key][action.status.toLowerCase()];
+    if (state === 'error') {
+      console.error('Error', action.error);
+    }
     if (handler) {
-      return handler(action, state);
+      return handler(action, state) || state;
     }
   }
   return state;

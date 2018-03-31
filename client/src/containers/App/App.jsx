@@ -5,9 +5,9 @@ import Header from '../../components/Header';
 import './App.css';
 
 const App = () => (
-  <div class="App">
+  <div className="App">
     <Header />
-    <Body class="App-body" />
+    <Body className="App-body" />
     <Footer />
   </div>
 );
