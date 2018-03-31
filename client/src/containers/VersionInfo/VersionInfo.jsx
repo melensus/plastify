@@ -11,7 +11,7 @@ class VersionInfo extends React.Component {
 
   render() {
     const { versionInfo } = this.props;
-    return <div>VersionInfo : {versionInfo}</div>;
+    return <div>Version {versionInfo}</div>;
   }
 }
 
