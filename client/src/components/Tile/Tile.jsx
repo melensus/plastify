@@ -8,7 +8,11 @@ class Tile extends React.Component {
     const divStyle = {
       backgroundImage: `url('${backgroundImage}')`
     };
-    return <div className="Tile" style={divStyle} />;
+    return (
+      <div className="Tile" style={divStyle}>
+        <span className="Tile-label">+</span>
+      </div>
+    );
   }
 }
 
