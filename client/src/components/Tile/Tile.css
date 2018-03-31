@@ -45,3 +45,7 @@
   left: 10px;
   right: 10px;
 }
+
+.Tile:active .Tile-label {
+  display: none;
+}
