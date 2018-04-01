@@ -17,10 +17,7 @@ export default {
       success: (action, state) => {
         const ret = {};
         for (let i = 0; i < 30; i++) {
-          ret[i] =
-            action.response.data[
-              rand()
-            ].images.fixed_height_downsampled.gif_url;
+          ret[i] = action.response.data[rand()].images.original_still.gif_url;
         }
         return ret;
       }
