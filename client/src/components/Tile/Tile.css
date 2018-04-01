@@ -1,4 +1,9 @@
 .Tile {
+  width: 128px;
+  height: 128px;
+  display: inline-block;
+}
+.Tile-bg {
   position: relative;
   background-color: #333;
   width: 128px;
@@ -26,14 +31,14 @@
   text-align: center;
 }
 
-.Tile:hover {
+.Tile-bg:hover {
   background-color: #666;
 
   box-shadow: 0 0 3px 0 black inset, 0 0 3px 0 black;
   filter: none;
 }
 
-.Tile:active {
+.Tile-bg:active {
   width: auto;
   height: 80%;
   position: fixed;
@@ -46,6 +51,6 @@
   right: 10px;
 }
 
-.Tile:active .Tile-label {
+.Tile-bg:active .Tile-label {
   display: none;
 }

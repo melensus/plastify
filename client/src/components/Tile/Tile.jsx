@@ -9,8 +9,10 @@ class Tile extends React.Component {
       backgroundImage: `url('${backgroundImage}')`
     };
     return (
-      <div className="Tile" style={divStyle}>
-        <span className="Tile-label">+</span>
+      <div className="Tile">
+        <div className="Tile-bg" style={divStyle}>
+          <span className="Tile-label">+</span>
+        </div>
       </div>
     );
   }
