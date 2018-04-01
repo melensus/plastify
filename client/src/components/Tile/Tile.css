@@ -1,16 +1,18 @@
 .Tile {
-  width: 128px;
-  height: 128px;
+  width: 144px;
+  height: 144px;
   display: inline-block;
+  position: relative;
 }
+
 .Tile-bg {
   position: relative;
   background-color: #333;
   width: 128px;
   height: 128px;
+  margin: 16px;
   display: inline-block;
   border-radius: 128px;
-  margin: 16px;
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 64px 0 #111 inset, 0 0 64px 0 #111;
