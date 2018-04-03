@@ -13,7 +13,7 @@ export default {
   fetch: (action, dispatch) => giphy.trending('gifs', { limit: 100 }),
   state: {
     giphy: {
-      default: { test: '' },
+      default: {},
       success: (action, state) => {
         const ret = {};
         for (let i = 0; i < 30; i++) {

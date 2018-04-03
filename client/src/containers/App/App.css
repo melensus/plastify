@@ -22,7 +22,8 @@
   margin-top: 36px;
   padding: 42px;
   padding-top: 6px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .App .Header {

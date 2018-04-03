@@ -5,20 +5,24 @@
   position: relative;
 }
 
-.Tile-bg {
+.Tile-content.closed {
   position: relative;
   background-color: #333;
   width: 128px;
   height: 128px;
   margin: 16px;
-  display: inline-block;
-  border-radius: 128px;
+  display: none;
+  border-radius: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 64px 0 #111 inset, 0 0 64px 0 #111;
   vertical-align: bottom;
   text-align: center;
-  filter: grayscale(100%);
+}
+
+.Tile.closed .Tile-content.closed,
+.Tile.closing .Tile-content.closed {
+  display: block;
 }
 
 .Tile-label {
@@ -33,26 +37,55 @@
   text-align: center;
 }
 
-.Tile-bg:hover {
+.Tile.closed .Tile-content.closed:hover {
   background-color: #666;
-
   box-shadow: 0 0 3px 0 black inset, 0 0 3px 0 black;
-  filter: none;
 }
 
-.Tile-bg:active {
-  width: auto;
-  height: 80%;
-  position: fixed;
-  background-color: #111;
-  background-size: contain;
-  background-position: center;
-  z-index: 2;
-  top: 0;
-  left: 10px;
-  right: 10px;
+.Tile.opening .Tile-content.closed,
+.Tile.open .Tile-content.closed {
+  display: block;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: transform 1000ms, filter 1000ms;
+  transform: scale3d(20, 20, 1) rotate3d(1, 1, 1, 360deg);
+  z-index: 100;
+  filter: brightness(0%);
 }
 
-.Tile-bg:active .Tile-label {
+.Tile.closing .Tile-content.closed {
+  display: block;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: transform 1000ms, filter 1000ms;
+  transform: scale3d(1, 1, 1) rotate3d(1, 1, 1, 0deg);
+  z-index: 100;
+  filter: brightness(100%);
+}
+
+.Tile .Tile-content {
   display: none;
+}
+
+.Tile-content.open {
+  opacity: 0;
+}
+
+.Tile.open .Tile-content.open {
+  transition: opacity 100ms;
+  position: fixed;
+  display: block;
+  top: 36px;
+  left: 20px;
+  right: 0;
+  bottom: 20px;
+  opacity: 1;
+  background-color: black;
+  z-index: 100;
+}
+
+.Tile-header {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 15px;
+  font-size: 5em;
 }

@@ -1,4 +1,4 @@
-export const reducers = [];
+export const reducers = {};
 
 const PENDING = 'PENDING';
 const SUCCESS = 'SUCCESS';
@@ -26,14 +26,14 @@ function registerAction(actionConfig) {
 function addFuncFetch(actionConfig) {
   if (actionConfig.fetch) {
     const actionInfo = actions[actionConfig.type];
-    actionInfo.fetch = dispatch => {
-      dispatch(actionInfo.create(PENDING));
+    actionInfo.fetch = (dispatch, args) => {
+      dispatch(actionInfo.create(PENDING, { ...args }));
       return actionConfig
-        .fetch(actionInfo, dispatch)
+        .fetch(actionInfo, dispatch, args)
         .then(response =>
-          dispatch(actionInfo.create(SUCCESS, { response: response }))
+          dispatch(actionInfo.create(SUCCESS, { ...args, response: response }))
         )
-        .catch(e => dispatch(actionInfo.create(ERROR, { error: e })));
+        .catch(e => dispatch(actionInfo.create(ERROR, { ...args, error: e })));
     };
   }
 }
@@ -41,12 +41,14 @@ function addFuncFetch(actionConfig) {
 function addURLFetch(actionConfig) {
   if (actionConfig.url) {
     const actionInfo = actions[actionConfig.type];
-    actionInfo.fetch = dispatch => {
-      dispatch(actionInfo.create(PENDING));
+    actionInfo.fetch = (dispatch, args) => {
+      dispatch(actionInfo.create(PENDING, { ...args }));
       return fetch(actionConfig.url)
         .then(response => response.json())
-        .then(json => dispatch(actionInfo.create(SUCCESS, { response: json })))
-        .catch(e => dispatch(actionInfo.create(ERROR, { error: e })));
+        .then(json =>
+          dispatch(actionInfo.create(SUCCESS, { ...args, response: json }))
+        )
+        .catch(e => dispatch(actionInfo.create(ERROR, { ...args, error: e })));
     };
   }
 }
@@ -54,19 +56,28 @@ function addURLFetch(actionConfig) {
 function addReducers(actionConfig) {
   if (actionConfig.state) {
     const actionInfo = actions[actionConfig.type];
-    actionInfo.reducers = {};
+
     for (const key in actionConfig.state) {
       const handlers = actionConfig.state[key];
       addReducer(actionInfo, handlers, key, actionConfig);
     }
-    reducers.push(actionInfo.reducers);
   }
 }
 
 function addReducer(actionInfo, handlers, key, actionConfig) {
-  actionInfo.reducers[key] = (state = handlers.default, action) => {
+  const reducer = (state = handlers.default, action) => {
     return reduce(actionInfo, key, action, state, actionConfig);
   };
+
+  const existingReducerForKey = reducers[key];
+  if (existingReducerForKey) {
+    reducers[key] = (state, action) => {
+      state = existingReducerForKey(state, action);
+      return reducer(state, action);
+    };
+  } else {
+    reducers[key] = reducer;
+  }
 }
 
 function reduce(actionInfo, key, action, state, actionConfig) {
