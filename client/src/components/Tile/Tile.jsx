@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Action } from '../../actions';
 import { connect } from 'react-redux';
+import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
 import './Tile.css';
 import uuid from 'uuid/v4';
 
@@ -45,7 +46,29 @@ class Tile extends React.Component {
         </div>
         <div className="Tile-content open">
           <div className="Tile-header">
+            <div className="Tile-title">REGISTER</div>
             <span onMouseDown={this.close}>X</span>
+          </div>
+          <div className="Tile-body">
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+              <Input placeholder="username" />
+            </InputGroup>
+            <br />
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">?</InputGroupAddon>
+              <Input placeholder="password" />
+            </InputGroup>
+            <br />
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">#</InputGroupAddon>
+              <Input placeholder="phone" />
+            </InputGroup>
+            <br />
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">&gt;</InputGroupAddon>
+              <Button>Register</Button>
+            </InputGroup>
           </div>
         </div>
       </div>
