@@ -3,7 +3,7 @@ export default {
   fetch: (action, dispatch, args) => {
     return new Promise((resolve, reject) => {
       console.log('pending', args.$id);
-      setTimeout(() => resolve({ $id: args.$id }), 100);
+      setTimeout(() => resolve({ $id: args.$id }), 400);
     });
   },
   state: {
@@ -17,6 +17,7 @@ export default {
           ret[tileId] = { ...tileState, status: 'closed' };
         }
         ret[action.$id] = { status: 'opening' };
+        document.body.className = 'tileOpen';
         return ret;
       },
       success: (action, state) => {

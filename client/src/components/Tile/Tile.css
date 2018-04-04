@@ -13,8 +13,6 @@
   margin: 16px;
   display: none;
   border-radius: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
   box-shadow: 0 0 12px 0 #111 inset, 0 0 12px 0 #111;
   vertical-align: bottom;
   text-align: center;
@@ -45,11 +43,18 @@
 .Tile.opening .Tile-content.closed,
 .Tile.open .Tile-content.closed {
   display: block;
+  background-color: black;
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: transform 400ms, filter 300ms;
+  transition: transform 400ms;
   transform: scale3d(20, 20, 1);
-  z-index: 100;
-  filter: brightness(0%);
+  z-index: 101;
+  filter: brightness(50%) blur(2px);
+}
+
+.Tile.opening .Tile-content.closed .Tile-label,
+.Tile.open .Tile-content.closed .Tile-label {
+  transition: opacity 200ms;
+  opacity: 0;
 }
 
 .Tile.closing .Tile-content.closed {
@@ -57,36 +62,48 @@
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: transform 400ms, filter 300ms;
   transform: scale3d(1, 1, 1);
-  z-index: 100;
+  z-index: 101;
   filter: brightness(100%);
 }
 
 .Tile .Tile-content {
-  display: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .Tile-content.open {
-  position: fixed;
-  top: 36px;
-  left: 20px;
-  right: 0;
-  bottom: 20px;
-  opacity: 1;
-  background-color: black;
-  z-index: 100;
+  display: none;
+  opacity: 0;
+  z-index: 101;
   filter: brightness(0%);
+
+  margin: 0;
+  padding: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
 }
 
-.Tile.open .Tile-content.open {
-  transition: filter 100ms;
+.Tile.opening .Tile-content.open {
   display: block;
+}
+.Tile.open .Tile-content.open {
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 50ms;
+  display: block;
+  opacity: 1;
   filter: brightness(100%);
+  z-index: 101;
 }
 
 .Tile-header {
   position: absolute;
-  z-index: 100;
+  z-index: 101;
   top: 0;
   right: 15px;
   font-size: 5em;
+  opacity: 0.1;
 }

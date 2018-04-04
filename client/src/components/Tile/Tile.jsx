@@ -47,7 +47,6 @@ class Tile extends React.Component {
           <div className="Tile-header">
             <span onMouseDown={this.close}>X</span>
           </div>
-          This is open
         </div>
       </div>
     );

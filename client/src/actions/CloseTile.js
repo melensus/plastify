@@ -11,6 +11,7 @@ export default {
       pending: (action, state) => {
         const ret = { ...state };
         ret[action.$id] = { status: 'closing' };
+        document.body.className = '';
         return ret;
       },
       success: (action, state) => {

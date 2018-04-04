@@ -7,16 +7,16 @@
 
 ::-webkit-scrollbar {
   width: 8px;
-  background-color: black;
+  background-color: transparent;
 }
 
 .App .Body {
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 50ms;
   color: white;
   position: relative;
-  height: calc(100% - 72px);
-  margin-top: 36px;
+  height: calc(100% - 36px);
   padding: 42px;
-  padding-top: 6px;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -30,6 +30,25 @@
   height: 36px;
   background-color: #333;
   padding-top: 6px;
+}
+
+body.tileOpen .App .Header {
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 200ms;
+  top: -36px;
+}
+
+body.tileOpen .App .Footer {
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 200ms;
+  bottom: -36px;
+}
+
+body.tileOpen .App .Body {
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 200ms;
+  height: 100%;
+  overflow-y: hidden;
 }
 
 .App .Footer {

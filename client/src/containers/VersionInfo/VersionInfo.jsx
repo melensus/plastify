@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Action } from '../../actions';
 import { connect } from 'react-redux';
+import './VersionInfo.css';
 
 class VersionInfo extends React.Component {
   componentDidMount() {
@@ -11,7 +12,7 @@ class VersionInfo extends React.Component {
 
   render() {
     const { versionInfo } = this.props;
-    return <div>Version {versionInfo}</div>;
+    return <div className="VersionInfo">v.{versionInfo}</div>;
   }
 }
 
