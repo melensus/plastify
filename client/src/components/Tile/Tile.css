@@ -15,7 +15,7 @@
   border-radius: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0 0 64px 0 #111 inset, 0 0 64px 0 #111;
+  box-shadow: 0 0 12px 0 #111 inset, 0 0 12px 0 #111;
   vertical-align: bottom;
   text-align: center;
 }
@@ -46,8 +46,8 @@
 .Tile.open .Tile-content.closed {
   display: block;
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: transform 1000ms, filter 1000ms;
-  transform: scale3d(20, 20, 1) rotate3d(1, 1, 1, 360deg);
+  transition: transform 400ms, filter 300ms;
+  transform: scale3d(20, 20, 1);
   z-index: 100;
   filter: brightness(0%);
 }
@@ -55,7 +55,7 @@
 .Tile.closing .Tile-content.closed {
   display: block;
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: transform 1000ms, filter 1000ms;
+  transition: transform 400ms, filter 300ms;
   transform: scale3d(1, 1, 1) rotate3d(1, 1, 1, 0deg);
   z-index: 100;
   filter: brightness(100%);

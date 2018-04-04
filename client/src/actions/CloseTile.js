@@ -2,7 +2,7 @@ export default {
   type: 'CLOSE_TILE',
   fetch: (action, dispatch, args) => {
     return new Promise((resolve, reject) => {
-      setTimeout(() => resolve({ $id: args.$id }), 1000);
+      setTimeout(() => resolve({ $id: args.$id }), 400);
     });
   },
   state: {

@@ -7,12 +7,7 @@
 
 ::-webkit-scrollbar {
   width: 8px;
-  background-color: #333;
-}
-
-::-webkit-scrollbar-thumb {
-  width: 8px;
-  background-image: -webkit-linear-gradient(#333, #8a8a8a, #333);
+  background-color: black;
 }
 
 .App .Body {
@@ -23,7 +18,7 @@
   padding: 42px;
   padding-top: 6px;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 .App .Header {

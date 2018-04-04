@@ -3,7 +3,7 @@ export default {
   fetch: (action, dispatch, args) => {
     return new Promise((resolve, reject) => {
       console.log('pending', args.$id);
-      setTimeout(() => resolve({ $id: args.$id }), 700);
+      setTimeout(() => resolve({ $id: args.$id }), 300);
     });
   },
   state: {
