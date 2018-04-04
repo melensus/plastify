@@ -56,7 +56,7 @@
   display: block;
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   transition: transform 400ms, filter 300ms;
-  transform: scale3d(1, 1, 1) rotate3d(1, 1, 1, 0deg);
+  transform: scale3d(1, 1, 1);
   z-index: 100;
   filter: brightness(100%);
 }
@@ -66,13 +66,7 @@
 }
 
 .Tile-content.open {
-  opacity: 0;
-}
-
-.Tile.open .Tile-content.open {
-  transition: opacity 100ms;
   position: fixed;
-  display: block;
   top: 36px;
   left: 20px;
   right: 0;
@@ -80,6 +74,13 @@
   opacity: 1;
   background-color: black;
   z-index: 100;
+  filter: brightness(0%);
+}
+
+.Tile.open .Tile-content.open {
+  transition: filter 100ms;
+  display: block;
+  filter: brightness(100%);
 }
 
 .Tile-header {
